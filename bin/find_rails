@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "rails_finder"
+
+RailsFinder.run(ARGV.first || Dir.pwd)
