@@ -1,5 +1,6 @@
 require "rails_finder"
 require "fileutils"
+require "tmpdir"
 
 RSpec.configure do |config|
   def with_dir
