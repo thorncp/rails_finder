@@ -2,4 +2,17 @@
 
 require "rails_finder"
 
+def print_help
+  puts <<END
+Finds Rails applications in the given directory and reports their
+version numbers. If no directory is given, uses the current.
+END
+  puts "\n\tusage: find_rails [directory]"
+end
+
+if ARGV.any? { |a| a == "-h" || a == "--help" }
+  print_help
+  exit
+end
+
 RailsFinder.run(ARGV.first || Dir.pwd)
