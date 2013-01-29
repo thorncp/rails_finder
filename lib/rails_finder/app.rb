@@ -1,3 +1,6 @@
+require "rails_finder/gemfile"
+require "rails_finder/environment_file"
+
 module RailsFinder
   class App
     attr_reader :root
