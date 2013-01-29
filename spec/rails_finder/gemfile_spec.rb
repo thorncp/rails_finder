@@ -1,3 +1,4 @@
+require "spec_helper"
 require "rails_finder/gemfile"
 require "tmpdir"
 require "fileutils"
@@ -11,16 +12,6 @@ END
 
 module RailsFinder
   describe Gemfile do
-    def with_dir
-      Dir.mktmpdir("rails_version-spec") do |dir|
-        yield dir
-      end
-    end
-
-    def gemfile(dir)
-      File.join(dir, "Gemfile")
-    end
-
     it "knows if file exists" do
       with_dir do |dir|
         FileUtils.touch(gemfile(dir))
