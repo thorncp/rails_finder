@@ -27,7 +27,7 @@ module RailsFinder
     def apps
       @apps ||= Dir["#{dir}/**/config/environment.rb"].map do |file|
         App.new(File.expand_path("../..", file))
-      end
+      end.reject{ |a| a.rails_version.nil? }
     end
 
     private
