@@ -26,6 +26,14 @@ Rails::Initializer.run do |config|
 end
 END
 
+VALID_ISOLATE_FILE = <<END
+options :system => false
+
+gem 'rails', '3.0.20', :require => 'rails'
+gem 'oauth'
+gem 'mysql2', '0.2.18'
+END
+
 describe RailsFinder do
   it "finds and reports on valid Gemfile" do
     Dir.mktmpdir "rails_finder-valid_app" do |dir|
@@ -53,6 +61,21 @@ describe RailsFinder do
       RailsFinder.run(dir, out)
       out.string.should include "2.3.16"
       out.string.should include "valid_2.3_app"
+    end
+  end
+
+  it "finds and reports on valid Isolate file" do
+    Dir.mktmpdir "valid_app_with_isolate" do |dir|
+      FileUtils.mkdir_p(File.join(dir, "config"))
+      FileUtils.touch(File.join(dir, "config", "environment.rb"))
+      File.open(File.join(dir, "Isolate"), "w") do |file|
+        file.puts(VALID_ISOLATE_FILE)
+      end
+
+      out = StringIO.new
+      RailsFinder.run(dir, out)
+      out.string.should include "3.0.20"
+      out.string.should include "valid_app_with_isolate"
     end
   end
 end

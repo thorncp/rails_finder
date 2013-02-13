@@ -6,8 +6,8 @@ require 'rails_finder/version'
 Gem::Specification.new do |gem|
   gem.name          = "rails_finder"
   gem.version       = RailsFinder::VERSION
-  gem.authors       = ["Chris Thorn"]
-  gem.email         = ["thorncp@gmail.com"]
+  gem.authors       = ["Chris Thorn", "Tobi Lehman"]
+  gem.email         = ["thorncp@gmail.com", "tobi.lehman@gmail.com"]
   gem.description   = %q{Overly simple utility to recursively find Rails apps and their versions}
   gem.summary       = %q{Overly simple utility to recursively find Rails apps and their versions}
   gem.homepage      = "https://github.com/thorncp/rails_finder"

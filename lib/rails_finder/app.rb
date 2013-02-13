@@ -1,5 +1,6 @@
 require "rails_finder/gemfile"
 require "rails_finder/environment_file"
+require "rails_finder/isolate_file"
 
 module RailsFinder
   class App
@@ -16,6 +17,8 @@ module RailsFinder
     def rails_version
       if gemfile.exists?
         gemfile.rails_version
+      elsif isofile.exists?
+        isofile.rails_version
       elsif envfile.exists?
         envfile.rails_version
       else
@@ -32,5 +35,10 @@ module RailsFinder
     def envfile
       @envfile ||= EnvironmentFile.new(File.join(root, "config", "environment.rb"))
     end
+
+    def isofile
+      @isofile ||= IsolateFile.new(File.join(root, "Isolate"))
+    end
   end
 end
+

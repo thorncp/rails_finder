@@ -1,5 +1,5 @@
 module RailsFinder
-  class Gemfile
+  class IsolateFile
     attr_reader :path
 
     def initialize(path)
