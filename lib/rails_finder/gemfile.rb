@@ -14,7 +14,7 @@ module RailsFinder
       return @rails_version if @rails_version
       line = File.readlines(path).find { |l| l =~ /^gem.+rails/i }
       if line
-        @rails_version = line[/\d+\.\d+(\.\d+)?/]
+        @rails_version = line[/\d+\.\d+(\.\d+)?/] || "n/a"
       else
         @rails_version = "n/a"
       end
