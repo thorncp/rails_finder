@@ -1,5 +1,7 @@
 # RailsFinder
 
+[![Build Status](https://travis-ci.org/thorncp/rails_finder.png)](https://travis-ci.org/thorncp/rails_finder)
+
 Finds Rails applications in a given directory and reports their version numbers.
 
 Currently, I maintain quite a lot of Rails applications, and the recent flux of
