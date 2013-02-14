@@ -36,7 +36,7 @@ module RailsFinder
       end
     end
 
-    it "reports none when no Rails version" do
+    it "reports none when no Rails entry" do
       with_dir do |dir|
         File.open(gemfile(dir), "w") do |file|
           file.puts "source :rubygems"
@@ -46,6 +46,19 @@ module RailsFinder
         Gemfile.new(gemfile(dir)).rails_version.should == "n/a"
       end
     end
+
+    it "reports none when no Rails version" do
+      with_dir do |dir|
+        File.open(gemfile(dir), "w") do |file|
+          file.puts "gem 'rails'"
+          file.puts "source :rubygems"
+          file.puts "gem 'rspec', '2.12.0'"
+        end
+
+        Gemfile.new(gemfile(dir)).rails_version.should == "n/a"
+      end
+    end
+
 
     it "memoizes rails version" do
       with_dir do |dir|

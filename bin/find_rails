@@ -4,7 +4,7 @@ require "rails_finder"
 
 def print_help
   puts <<END
-Finds Rails applications in the given directory and reports their
+Finds Rails applications in the given directory and report their
 version numbers. If no directory is given, uses the current.
 END
   puts "\n\tusage: find_rails [directory]"
