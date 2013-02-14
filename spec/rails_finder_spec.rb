@@ -3,7 +3,7 @@ require "rails_finder"
 require "tmpdir"
 require "fileutils"
 
-VALID_GEMFILE = <<END
+LEGIT_GEMFILE = <<END
 source :rubygems
 
 gem 'rails', '3.2.11'
@@ -40,7 +40,7 @@ describe RailsFinder do
       FileUtils.mkdir_p(File.join(dir, "config"))
       FileUtils.touch(File.join(dir, "config", "environment.rb"))
       File.open(File.join(dir, "Gemfile"), "w") do |file|
-        file.puts(VALID_GEMFILE)
+        file.puts(LEGIT_GEMFILE)
       end
 
       out = StringIO.new
