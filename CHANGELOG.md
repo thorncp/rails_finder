@@ -1,8 +1,12 @@
 # Rails Finder Changelog
 
-## Dev
+## 0.0.3
+
+[7 commits by 1 author](https://github.com/thorncp/rails_finder/compare/v0.0.2...v0.0.3)
 
 * Sort output naturally by Rails version
+* Add rake as dev dependency
+* Build on [Travis](https://travis-ci.org/thorncp/rails_finder)
 
 ## 0.0.2
 
