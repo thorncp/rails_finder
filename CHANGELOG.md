@@ -1,5 +1,9 @@
 # Rails Finder Changelog
 
+## Dev
+
+* Sort output naturally by Rails version
+
 ## 0.0.2
 
 [8 commits by 2 authors](https://github.com/thorncp/rails_finder/compare/v0.0.1...v0.0.2)
