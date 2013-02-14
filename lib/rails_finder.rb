@@ -1,5 +1,6 @@
 require "rails_finder/version"
 require "rails_finder/app"
+require "naturally"
 
 module RailsFinder
   def self.run(dir, output = $stdout)
@@ -16,7 +17,7 @@ module RailsFinder
 
     def print
       if apps.any?
-        apps.sort_by(&:rails_version).each do |app|
+        apps.sort_by { |a| Naturally.normalize(a.rails_version) }.each do |app|
           output.puts "#{app.basename.ljust(root_width)} #{app.rails_version.ljust(version_width)} #{app.root}"
         end
       else

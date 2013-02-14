@@ -78,4 +78,28 @@ describe RailsFinder do
       out.string.should include "valid_app_with_isolate"
     end
   end
+
+  it "sorts by rails version" do
+    Dir.mktmpdir "sorted" do |dir|
+      FileUtils.mkdir_p(File.join(dir, "app-one", "config"))
+      FileUtils.touch(File.join(dir, "app-one", "config", "environment.rb"))
+      File.open(File.join(dir, "app-one", "Gemfile"), "w") do |file|
+        file.puts "source :rubygems"
+        file.puts "gem 'rails', '3.2.12'"
+      end
+
+      FileUtils.mkdir_p(File.join(dir, "app-two", "config"))
+      FileUtils.touch(File.join(dir, "app-two", "config", "environment.rb"))
+      File.open(File.join(dir, "app-two", "Gemfile"), "w") do |file|
+        file.puts "source :rubygems"
+        file.puts "gem 'rails', '3.2.8'"
+      end
+
+      out = StringIO.new
+      RailsFinder.run(dir, out)
+      lines = out.string.split("\n")
+      lines[0].should include "3.2.8"
+      lines[1].should include "3.2.12"
+    end
+  end
 end
