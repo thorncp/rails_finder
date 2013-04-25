@@ -26,7 +26,9 @@ module RailsFinder
     end
 
     def apps
-      @apps ||= Dir["#{dir}/**/config/environment.rb"].map do |file|
+      @apps ||= Dir["#{dir}/**/config/environment.rb"].reject do |file|
+          file =~ /\/tmp\//
+        end.map do |file|
         App.new(File.expand_path("../..", file))
       end
     end
