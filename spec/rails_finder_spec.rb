@@ -102,4 +102,26 @@ describe RailsFinder do
       lines[1].should include "3.2.12"
     end
   end
+
+  it "doesn't recognize anything under tmp as an app" do
+    Dir.mktmpdir "rails_finder-valid_app" do |dir|
+      FileUtils.mkdir_p(File.join(dir, "config"))
+  
+      FileUtils.touch(File.join(dir, "config", "environment.rb"))
+      File.open(File.join(dir, "Gemfile"), "w") do |file|
+        file.puts(LEGIT_GEMFILE)
+      end
+
+      bogus_path = "tmp/isolate/janky_rails_app_please_ignore/config"
+      FileUtils.mkdir_p(File.join(dir, bogus_path))
+      FileUtils.touch(File.join(dir, bogus_path, "environment.rb")) 
+      File.open(File.join(dir, bogus_path, "Gemfile"), "w") do |file|
+        file.puts(LEGIT_GEMFILE)
+      end
+
+      out = StringIO.new
+      RailsFinder.run(dir, out)
+      out.string.should_not include "janky_rails_app_please_ignore"
+    end    
+  end
 end
