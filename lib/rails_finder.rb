@@ -26,12 +26,16 @@ module RailsFinder
     end
 
     def apps
-      @apps ||= Dir["#{dir}/**/config/environment.rb"].map do |file|
+      @apps ||= files_for_dir.map do |file|
         App.new(File.expand_path("../..", file))
       end
     end
 
     private
+
+    def files_for_dir
+      Dir["#{dir}/**/config/environment.rb"].reject { |file| file =~ /\/tmp\// }
+    end
 
     def root_width
       @root_label_width = (apps.map { |a| a.basename.length }.max || 0) + 2
